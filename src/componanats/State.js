@@ -18,7 +18,7 @@ export default function State() {
 
 
   const header = [
-    "No", "State", "C_id", "Action",
+    "No", "State", "Country", "Action",
   ];
 
   const [states, setstate] = useState([]);
