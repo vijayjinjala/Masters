@@ -4,7 +4,10 @@ import { Link, Outlet } from "react-router-dom";
 import Randertable  from './Ctable';
 import Swal from 'sweetalert2';
 import * as Yup from "yup";
-import Dropdown from "../componanats/Dropdown"
+import Dropdown from "../componanats/Dropdown";
+import {useCookies} from "react-cookie";
+import Header from "./Header";
+
 
 
 export default function State() {
@@ -22,6 +25,8 @@ export default function State() {
   ];
 
   const [states, setstate] = useState([]);
+  const [cookies, setCookie, removeCkooki] = useCookies(['vijay.vijay-token']);
+
   useEffect(() => {
     getdata();
   }, []);
@@ -29,7 +34,7 @@ export default function State() {
   const getdata = () => {
     const option = {
       method: "GET",
-      headers: { "content-Type": "application/json" },
+      headers: { "content-Type": "application/json",'vijay-token':cookies['vijay-token'] },
     };
 
     fetch("http://localhost:4040/get-states", option)
@@ -56,7 +61,7 @@ export default function State() {
   const countrydata = () => {
     const option = {
       method: "GET",
-      headers: { "content-Type": "application/json" },
+      headers: { "content-Type": "application/json",'vijay-token':cookies['vijay-token'] },
     };
 
     fetch("http://localhost:4040/get-countries", option)
@@ -77,7 +82,7 @@ export default function State() {
 const statedelete = (id)=>{
   const options = {
     method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json','vijay-token':cookies['vijay-token'] },
 };
 fetch(`http://localhost:4040/put-states?id=${id}`, options)
     .then(response => response.json())
@@ -117,10 +122,10 @@ fetch(`http://localhost:4040/put-states?id=${id}`, options)
     formik.setFieldValue("state_name", response[0].state_name);
   };
   const editstate = (id) =>{
-    console.log(JSON.stringify({id:id})); 
+    // console.log(JSON.stringify({id:id})); 
        const options = {
           method: 'GET',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json','vijay-token':cookies['vijay-token'] },
         //  body:JSON.stringify({values})
         };
         fetch(`http://localhost:4040/get-states?id=${id}`, options)
@@ -152,13 +157,13 @@ fetch(`http://localhost:4040/put-states?id=${id}`, options)
         const options = {
           method: "POST",
           body: JSON.stringify(values),
-          headers: { "content-Type": "application/json" },
+          headers: { "content-Type": "application/json",'vijay-token':cookies['vijay-token']},
         };
 
         fetch("http://localhost:4040/post-states", options)
           .then((response) => response.json())
           .then((response) => {
-            console.log(response);
+            // console.log(response);
             // alert(response.message);
             Swal.fire({
               position: "center",
@@ -185,12 +190,13 @@ fetch(`http://localhost:4040/put-states?id=${id}`, options)
   return (
     <>
       <main id="main" className="main">
+        <Header/>
         <div className="pagetitle">
           <h1>State</h1>
           <nav>
             <ol className="breadcrumb">
               <li className="breadcrumb-item">
-                <Link to={"/"}>Home</Link>
+                <Link to={"/header"}>Home</Link>
               </li>
               <li className="breadcrumb-item active">Dashboard</li>
             </ol>

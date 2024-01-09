@@ -4,9 +4,11 @@ import { Link, Outlet } from "react-router-dom";
 import Randertable  from './Ctable';
 import Swal from 'sweetalert2';
 import * as Yup from "yup";
-
+import {useCookies} from "react-cookie";
+import Header from "./Header";
 
 export default function Country() {
+
   const swalWithBootstrapButtons = Swal.mixin({
     customClass: {
         confirmButton: 'btn btn-success m-1',
@@ -20,6 +22,8 @@ export default function Country() {
   ];
 
   const [countries, setcountries] = useState([]);
+  const [cookies, setCookie, removeCkooki] = useCookies(['vijay.vijay-token']);
+
   useEffect(() => {
     getdata();
   }, []);
@@ -27,7 +31,7 @@ export default function Country() {
   const getdata = () => {
     const option = {
       method: "GET",
-      headers: { "content-Type": "application/json" },
+      headers: { "content-Type": "application/json" ,'vijay-token':cookies['vijay-token']},
     };
 
     fetch("http://localhost:4040/get-countries", option)
@@ -48,7 +52,7 @@ export default function Country() {
   const countrydelete = (id)=>{
     const options = {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json','vijay-token':cookies['vijay-token'] },
   };
   fetch(`http://localhost:4040/put-countries?id=${id}`, options)
       .then(response => response.json())
@@ -91,7 +95,7 @@ export default function Country() {
     console.log(JSON.stringify({id:id})); 
        const options = {
           method: 'GET',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json','vijay-token':cookies['vijay-token'] },
         //  body:JSON.stringify({values})
         };
         fetch(`http://localhost:4040/get-countries?id=${id}`, options)
@@ -121,7 +125,7 @@ export default function Country() {
         const options = {
           method: "POST",
           body: JSON.stringify(values),
-          headers: { "content-Type": "application/json" },
+          headers: { "content-Type": "application/json",'vijay-token':cookies['vijay-token'] },
         };
 
         fetch("http://localhost:4040/post-countries", options)
@@ -154,12 +158,13 @@ export default function Country() {
   return (
     <>
       <main id="main" className="main">
+        <Header/>
         <div className="pagetitle">
           <h1>Country</h1>
           <nav>
             <ol className="breadcrumb">
               <li className="breadcrumb-item">
-                <Link to={"/"}>Home</Link>
+                <Link to={"/header"}>Home</Link>
               </li>
               <li className="breadcrumb-item active">Dashboard</li>
             </ol>
@@ -169,7 +174,7 @@ export default function Country() {
         <section className="section dashboard">
           <div class="modal fade" id="verticalycentered" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content">
+              <div class="modal-content ">
               <form onSubmit={formik.handleSubmit}>
                   <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">

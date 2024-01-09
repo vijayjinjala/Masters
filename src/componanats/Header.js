@@ -1,6 +1,20 @@
 import React from 'react'
+import Sidebar from './Sidebar'
+import {useCookies} from "react-cookie";
+import {  useNavigate, useLocation } from 'react-router-dom';
+
 
 export default function Header() {
+
+  const [cookies, setCookie, removeCkooki] = useCookies(['vijay-token']);
+
+  const Navigate = useNavigate();
+  const logout=()=>{
+    // console.log("hello");
+    alert("are sure for delete your account");
+    removeCkooki('vijay-token',{path:"/"});
+    Navigate("/login")
+  }
   return (
     <div>
       <body>
@@ -229,7 +243,7 @@ export default function Header() {
         </li>
 
         <li>
-          <a class="dropdown-item d-flex align-items-center" href="#">
+          <a class="dropdown-item d-flex align-items-center" href="javascript:void(0);" onClick={logout}>
             <i class="bi bi-box-arrow-right"></i>
             <span>Sign Out</span>
           </a>
@@ -244,8 +258,9 @@ export default function Header() {
 {/* <!-- End Icons Navigation --> */}
 
 </header>
-{/* <!-- End Header --> */}
+<Sidebar/>
 </body>
     </div>
+    
   )
 }

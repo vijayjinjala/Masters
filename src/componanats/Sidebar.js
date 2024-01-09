@@ -24,24 +24,32 @@ export default function Sidebar() {
         <i className="bi bi-menu-button-wide"></i><span>Components</span><i className="bi bi-chevron-down ms-auto"></i>
       </a>
       <ul id="components-nav" className="nav-content collapse" data-bs-parent="#sidebar-nav">
-        <li> 
-          <a> 
-          <Link className="bi bi-circle" to={"/country"}>country</Link>
-          </a>
-        </li>
-        <li>
-        <a> 
-          <Link className="bi bi-circle" to={"/state"}>State</Link>
-          </a>
-        </li>
-        <li>
-        <a> 
-          <Link className="bi bi-circle" to={"/city"}>City</Link>
-          </a>
-        </li>
+      <li className="nav-item">
+      <Link to="/country">
+      <a className="nav-link collapsed" href="pages-login.html">
+        <i className="bi bi-circle"></i>
+        <span>Country</span>
+      </a>
+      </Link>
+    </li>
+    <li className="nav-item">
+      <Link to="/state">
+      <a className="nav-link collapsed" href="pages-login.html">
+        <i className="bi bi-circle"></i>
+        <span>State</span>
+      </a>
+      </Link>
+    </li>
+    <li className="nav-item">
+      <Link to="/city">
+      <a className="nav-link collapsed" href="pages-login.html">
+        <i className="bi bi-circle"></i>
+        <span>City</span>
+      </a>
+      </Link>
+    </li>
       </ul>
       </li>
-    <Outlet/>
     {/* <!-- End Components Nav --> */}
 
     <li className="nav-item">
@@ -167,22 +175,32 @@ export default function Sidebar() {
     </li>
     {/* <!-- End Contact Page Nav --> */}
 
-    <li className="nav-item">
-      <a className="nav-link collapsed" href="pages-register.html">
-        <i className="bi bi-card-list"></i>
-        <span>Register</span>
-      </a>
-    </li>
+    {/* <li className="nav-item">
+      <a>
+        <link  className="bi bi-card-list" to={"/registration"}>Register</link> */}
+        {/* <span>Register</span> */}
+      {/* </a>
+    </li> */}
+    {/* <Outlet/> */}
     {/* <!-- End Register Page Nav --> */}
 
     <li className="nav-item">
+      <Link to="/registration">
+      <a className="nav-link collapsed" href="pages-login.html">
+        <i className="bi bi-card-list"></i>
+        <span>Register</span>
+      </a>
+      </Link>
+    </li>
+    <li className="nav-item">
+      <Link to="/login">
       <a className="nav-link collapsed" href="pages-login.html">
         <i className="bi bi-box-arrow-in-right"></i>
         <span>Login</span>
       </a>
+      </Link>
     </li>
-    {/* <!-- End Login Page Nav --> */}
-
+   
     <li className="nav-item">
       <a className="nav-link collapsed" href="pages-error-404.html">
         <i className="bi bi-dash-circle"></i>
@@ -205,7 +223,7 @@ export default function Sidebar() {
 {/* // <!-- End Sidebar--> */}
 
    </body>
-   
+   <Outlet/>
     </div>
   )
 }

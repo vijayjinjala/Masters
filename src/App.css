@@ -764,7 +764,7 @@ h6 {
 .dashboard .filter {
   position: absolute;
   right: 0px;
-  top: 0%;
+  top: 15px;
 }
 
 .dashboard .filter .icon {
@@ -1232,25 +1232,11 @@ h6 {
   color: #012970;
 }
 
-section button{
-  margin-left: 760px;
-}
-section label{
-  margin: 20px;
-}
-section input{
-padding: 20px;
-width: 400px;
-}
-
-.red-border{
-  border: 1px solid red !important;
-
-}
 .text-red{
   color: red !important;
 }
-.bx{
-  height: 100px;
-  width: 100px;
+.red-border{
+  border: 1px solid red !important;
+  /* border-radius: 25px; */
+  width: 320px;
 }

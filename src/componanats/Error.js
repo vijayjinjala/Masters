@@ -1,4 +1,6 @@
 import React from 'react'
+import { Outlet, Link } from "react-router-dom";
+
 
 export default function Error() {
   return (
@@ -11,7 +13,7 @@ export default function Error() {
     <section class="section error-404 min-vh-100 d-flex flex-column align-items-center justify-content-center">
       <h1>404</h1>
       <h2>This page is not found.</h2>
-      <a class="btn" href="index.html">Back to home</a>
+      <Link to="/header"><a class="btn">Back to home</a></Link>
       <img src='https://img.freepik.com/free-vector/error-404-concept-illustration_114360-1811.jpg'></img>
       <div class="credits">
       Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
@@ -38,6 +40,7 @@ export default function Error() {
 <script src="assets/js/main.js"></script>
 
 </body>
+<Outlet/>
     </div>
   )
 }
